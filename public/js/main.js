@@ -33,8 +33,25 @@ jQuery(document).ready(function($) {
       );
     });
   };
-
   contactForm();
+
+  var subscribeForm = function() {
+    $('#subscribe').submit(function(e) {
+      e.preventDefault();
+
+      let form = $(this);
+      let formData = getFormData(form);
+
+      $.post(
+        'https://us-central1-swiss-4e11e.cloudfunctions.net/function-2',
+        formData,
+        function(response) {
+          window.location.replace('/thank.html');
+        }
+      );
+    });
+  };
+  subscribeForm();
 
   var siteMenuClone = function() {
     $('.js-clone-nav').each(function() {
